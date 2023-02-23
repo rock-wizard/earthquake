@@ -1,0 +1,41 @@
+/lib[1]/book[1]/title
+split path by '/'
+paths = ["lib[1]", "book[1]", title[1]]
+
+visited = map -> how many tags did you visit
+such as if visited["level_lib"] == null, it does not meet lib tag
+        if visited["lib"] == 0, it met lib once
+
+
+level = 0, it means which level we prepare to meet
+
+read tag one by one
+    if (tag like </..>) {
+        stack.pop();
+        continue;
+    }
+
+    visited[paths[level].name]++;
+    stack.push(tag);
+
+    if (visted[paths[level].name]  == paths[level].number){
+        level++;
+    }
+
+    if (level == paths.size() - 1) {
+        // it means we find all path.
+        we just find the tag is euqal to title and return it
+    }
+
+    
+    
+
+
+return not found
+
+    
+
+    
+    
+
+    

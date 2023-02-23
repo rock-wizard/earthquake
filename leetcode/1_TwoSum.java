@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /*
  * While I'm iterating the nums arry, I should look back which number is equal to the difference of target and current number.
@@ -15,14 +16,15 @@ import java.util.HashMap;
 
 class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> dict = new HashMap<>();
+        Map<Integer, Integer> remainder = new HashMap<>();
+
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (dict.containsKey(complement)) {
-                return new int[] { dict.get(complement), i };
+            if (remainder.containsKey(target - nums[i])) {
+                return new int[]{remainder.get(target - nums[i]), i};
             }
-            dict.put(nums[i], i);
+            remainder.put(nums[i], i);
         }
+
         return null;
     }
 }

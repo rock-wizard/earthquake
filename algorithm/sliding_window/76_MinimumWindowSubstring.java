@@ -1,4 +1,4 @@
-package leetcode;
+package algorithm.sliding_window;
 
 import java.util.HashMap;
 import java.util.Map;
