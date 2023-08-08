@@ -1,8 +1,5 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class LongestPalindromicSubstring {
     /*
      * there are three cases in start-up periord:
@@ -48,7 +45,6 @@ class LongestPalindromicSubstring {
 
             while (l >= 0 && s.charAt(l) == s.charAt(i)) {
                 l--;
-
             }
 
             while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)) {

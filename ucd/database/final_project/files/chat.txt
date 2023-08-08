@@ -1,0 +1,38 @@
+CREATE TABLE title (
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    publisher VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY(title, publisher),
+    FOREIGN KEY (publisher) REFERENCES publisher(publisher) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE comic_book (
+    id INT NOT NULL AUTO_INCREMENT,
+    title_id INT NOT NULL,
+    issue INT NOT NULL,
+    `year` INT NOT NULL,
+    grade FLOAT(3, 1) NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (title_id) REFERENCES title(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE comic_book_price (
+    comic_book_id INT NOT NULL,
+    symbol VARCHAR(20) NOT NULL,
+    `signed` TINYINT NOT NULL,
+    collected_by VARCHAR(20),
+    purchase_price FLOAT(10, 2) NOT NULL,
+    original_price FLOAT(10, 2) NOT NULL,
+    special VARCHAR(20),
+    offering_price FLOAT(10, 2) NOT NULL,
+    existed TINYINT NOT NULL DEFAULT 1,
+
+    PRIMARY KEY (comic_book_id),
+    FOREIGN KEY (comic_book_id) REFERENCES comic_book(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (symbol) REFERENCES comic_quality(symbol) ON DELETE CASCADE ON UPDATE CASCADE    
+);
+
+According to the above three tables, please create a view to should titile, issue, symbol, signed, collected_by, special and profit(offering_price - purchase_price)

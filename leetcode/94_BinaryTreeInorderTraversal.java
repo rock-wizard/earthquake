@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import javafx.util.Pair;
-
 class BinaryTreeInorderTraversal {
     private class TreeNode {
         int val;
@@ -23,6 +21,24 @@ class BinaryTreeInorderTraversal {
             this.val = val;
             this.left = left;
             this.right = right;
+        }
+    }
+
+    private class Pair<K, V> {
+        K key;
+        V value;
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
         }
     }
 

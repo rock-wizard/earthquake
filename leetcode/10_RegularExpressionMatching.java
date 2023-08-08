@@ -117,4 +117,50 @@ class RegularExpressionMatching {
         }
         return dp[m][n];
     }
+
+    public boolean isMatchGood(String s, String p) {
+        if (p.isEmpty()) {
+            return s.isEmpty();
+        }
+
+        int m = s.length(), n = p.length();
+        boolean[][] dp = new boolean[m+1][n+1];
+        dp[0][0] = true;
+
+        // Handle the * in order to initilise the dp array
+        for (int i = 0; i < n; i ++) {
+            if (p.charAt(i) == '*') {
+                dp[0][i+1] = dp[0][i-1];
+            }
+        }
+
+        /**
+        if s[i] != p[j] && p[j] != '.' && p[j] != '*':
+            that's false
+        if s[i] == p[j] || p[j] == '.':
+            dp[i+1][j+1] = dp[i][j]
+        if p[j] == '*'
+            p[j-1] == '.' || p[j-1] == s[i]
+            1. make p[j-1] apear 0 times, s[i] == p[j-2] -> dp[i+1][j+1] = dp[i+1][j-1]
+            2. make p[j-1] apear 1 times, s[i-1] == p[j-2] -> dp[i+1][j+1] = dp[i][j-1]
+            3. make p[j-1] apear many times, s[i-1] == p[j] - > dp[i][j+1]
+            p[j-1] != '.' && p[j-1] != s[i]
+            it has to appear 0 times, s[i] == p[j-2] -> dp[i+1][j+1] = dp[i+1][j-1]
+         */
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.') {
+                    dp[i+1][j+1] = dp[i][j];
+                }else if (p.charAt(j) == '*') {
+                    if (s.charAt(i) == p.charAt(j-1) || p.charAt(j-1) == '.') {
+                        dp[i+1][j+1] = dp[i+1][j-1] || dp[i][j-1] || dp[i][j+1];
+                    } else {
+                        dp[i+1][j+1] = dp[i+1][j-1];
+                    }
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
 }

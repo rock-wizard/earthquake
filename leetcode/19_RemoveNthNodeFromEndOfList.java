@@ -18,9 +18,12 @@ class RemoveNthNodeFromEndOfList {
         }
     }
 
+
+    // Once the curr is pointing to the last node of the list, the prev points the previce one before the target
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummy = new ListNode(0, head);
+        ListNode dummy = new ListNode(-1, head);
         ListNode prev = dummy, curr = dummy;
+
         for (int i = 0; i < n; i++) {
             curr = curr.next;
         }
@@ -30,9 +33,7 @@ class RemoveNthNodeFromEndOfList {
             curr = curr.next;
         }
 
-        if (prev.next != null) {
-            prev.next = prev.next.next;
-        }
+        prev.next = prev.next.next;
 
         return dummy.next;
     }

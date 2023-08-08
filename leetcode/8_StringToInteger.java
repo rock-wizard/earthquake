@@ -22,6 +22,7 @@ class StringToInteger {
         // find the sign
         if (i < s.length() && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
             sign = s.charAt(i) == '+' ? 1 : -1;
+            i++;
         }
 
         while (i < s.length()) {
